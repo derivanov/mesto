@@ -1,0 +1,25 @@
+.popup__btn-close {
+  display: block;
+  border: none;
+  background: url(../../../images/add-button.svg) no-repeat center rgba(0, 0, 0, 0);
+  background-size: cover;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  transform: rotate(45deg);
+  position: absolute;
+  right: -37px;
+  top: -38px;
+  transition: opacity linear .1s;
+}
+
+.popup__btn-close:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 430px) {
+  .popup__btn-close {
+    right: -4px;
+    top: -44px;
+  }
+}

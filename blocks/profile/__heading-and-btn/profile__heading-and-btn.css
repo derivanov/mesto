@@ -1,0 +1,9 @@
+.profile__heading-and-btn {
+  display: flex;
+}
+
+@media screen and (max-width: 881px) {
+  .profile__heading-and-btn  {
+    justify-content: center;
+  }
+}

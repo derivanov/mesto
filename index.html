@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Путешествия по России</title>
+  <title>Mesto</title>
   <link rel="stylesheet" href="pages/index.css">
 </head>
 <body class="page">
@@ -12,42 +12,45 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="images/profile-avatar.jpg" alt="">
+      <img class="profile__avatar" src="images/profile-avatar.jpg" alt="Аватар">
       <div class="profile__info">
-        <h1 class="profile__heading">Жак-Ив Кусто <button class="profile__edit-button"></button></h1>
+        <div class="profile__heading-and-btn">
+          <h1 class="profile__heading">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button"></button>
+        </div>
         <p class="profile__caption">Исследователь океана</p>
       </div>
-      <button class="profile_add-button"></button>
+      <button class="profile__add-button"></button>
     </section>
     <ul class="elements">
       <li class="element">
         <h2 class="element__heading">Карачаевск</h2>
-        <img class="element__pic" src="images/mesto-1.jpg">
+        <img class="element__pic" src="images/mesto-1.jpg" alt="Пейзаж">
         <button class="element__btn-like"></button>
       </li>
       <li class="element">
         <h2 class="element__heading">Гора Эльбрус</h2>
-        <img class="element__pic" src="images/mesto-2.jpg">
+        <img class="element__pic" src="images/mesto-2.jpg" alt="Пейзаж">
         <button class="element__btn-like"></button>
       </li>
       <li class="element">
         <h2 class="element__heading">Домбай</h2>
-        <img class="element__pic" src="images/mesto-3.jpg">
+        <img class="element__pic" src="images/mesto-3.jpg" alt="Пейзаж">
         <button class="element__btn-like"></button>
       </li>
       <li class="element">
         <h2 class="element__heading">Гора Эльбрус</h2>
-        <img class="element__pic" src="images/mesto-2.jpg">
+        <img class="element__pic" src="images/mesto-2.jpg" alt="Пейзаж">
         <button class="element__btn-like"></button>
       </li>
       <li class="element">
         <h2 class="element__heading">Домбай</h2>
-        <img class="element__pic" src="images/mesto-3.jpg">
+        <img class="element__pic" src="images/mesto-3.jpg" alt="Пейзаж">
         <button class="element__btn-like"></button>
       </li>
       <li class="element">
         <h2 class="element__heading">Карачаево-Черкесия</h2>
-        <img class="element__pic" src="images/mesto-1.jpg">
+        <img class="element__pic" src="images/mesto-1.jpg" alt="Пейзаж">
         <button class="element__btn-like"></button>
       </li>
     </ul>
@@ -66,6 +69,6 @@
       <botton class="popup__btn-close"></botton>
     </form>
   </div>
-  <script src="pages/script.js"></script>
+  <script src="script/script.js"></script>
 </body>
 </html>
