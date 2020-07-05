@@ -8,50 +8,62 @@
 </head>
 <body class="page">
   <header class="header">
-    <img class="logo" src="images/logo.svg" alt="Mesto Russia">
+    <img class="logo" src="images/logo.svg" alt="Место">
   </header>
   <main class="content">
     <section class="profile">
       <img class="profile__avatar" src="images/profile-avatar.jpg" alt="Аватар">
       <div class="profile__info">
-        <div class="profile__heading-and-btn">
+        <div class="profile__header">
           <h1 class="profile__heading">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-button"></button>
         </div>
         <p class="profile__caption">Исследователь океана</p>
       </div>
-      <button class="profile__add-button"></button>
+      <button type="button" class="profile__add-button"></button>
     </section>
     <ul class="elements">
       <li class="element">
-        <h2 class="element__heading">Карачаевск</h2>
+        <div class="element__caption">
+          <h2 class="element__heading">Карачаевск</h2>
+          <button type="button" class="element__btn-like"></button>
+        </div>
         <img class="element__pic" src="images/mesto-1.jpg" alt="Пейзаж">
-        <button class="element__btn-like"></button>
       </li>
       <li class="element">
-        <h2 class="element__heading">Гора Эльбрус</h2>
+        <div class="element__caption">
+          <h2 class="element__heading">Гора Эльбрус</h2>
+          <button type="button" class="element__btn-like"></button>
+        </div>
         <img class="element__pic" src="images/mesto-2.jpg" alt="Пейзаж">
-        <button class="element__btn-like"></button>
       </li>
       <li class="element">
-        <h2 class="element__heading">Домбай</h2>
+        <div class="element__caption">
+          <h2 class="element__heading">Домбай</h2>
+          <button type="button" class="element__btn-like"></button>
+        </div>
         <img class="element__pic" src="images/mesto-3.jpg" alt="Пейзаж">
-        <button class="element__btn-like"></button>
       </li>
       <li class="element">
-        <h2 class="element__heading">Гора Эльбрус</h2>
+        <div class="element__caption">
+          <h2 class="element__heading">Гора Эльбрус</h2>
+          <button type="button" class="element__btn-like"></button>
+        </div>
         <img class="element__pic" src="images/mesto-2.jpg" alt="Пейзаж">
-        <button class="element__btn-like"></button>
       </li>
       <li class="element">
-        <h2 class="element__heading">Домбай</h2>
+        <div class="element__caption">
+          <h2 class="element__heading">Домбай</h2>
+          <button type="button" class="element__btn-like"></button>
+        </div>
         <img class="element__pic" src="images/mesto-3.jpg" alt="Пейзаж">
-        <button class="element__btn-like"></button>
       </li>
       <li class="element">
-        <h2 class="element__heading">Карачаево-Черкесия</h2>
+        <div class="element__caption">
+          <h2 class="element__heading">Карачаево-Черкесия</h2>
+          <button type="button" class="element__btn-like"></button>
+        </div>
         <img class="element__pic" src="images/mesto-1.jpg" alt="Пейзаж">
-        <button class="element__btn-like"></button>
       </li>
     </ul>
   </main>
@@ -59,14 +71,14 @@
     <p class="footer__author">&copy; 2020 Mesto Russia</p>
   </footer>
   <div class="popup">
-    <form class="popup__container">
+    <form name="profile" method="GET" action="#" class="popup__container">
       <h2 class="popup__heading">Редактировать профиль</h2>
       <fieldset class="popup__prof-info">
-        <input class="popup__text-field" type="text" id="fullname" name="fullname" value="Жак-Ив Кусто" required>
-        <input class="popup__text-field" type="text" id="profession" name="profession" value="Исследователь океана" required>
+        <input class="popup__text-field" type="text" id="fullname" name="fullname" value="" placeholder="Имя" required>
+        <input class="popup__text-field" type="text" id="profession" name="profession" value="" placeholder="О себе" required>
       </fieldset>
       <input class="popup__btn-save" type="submit" value="Сохранить">
-      <botton class="popup__btn-close"></botton>
+      <button type="button" class="popup__btn-close"></button>
     </form>
   </div>
   <script src="script/script.js"></script>

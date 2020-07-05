@@ -7,9 +7,9 @@
   background-color: #000;
   cursor: pointer;
   color: #fff;
-  transition: opacity linear .1s;
+  transition: background-color linear .1s;
 }
 
 .popup__btn-save:hover {
-  opacity: .8;
+  background-color: #313131;
 }
