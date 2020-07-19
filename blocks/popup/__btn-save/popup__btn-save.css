@@ -11,5 +11,5 @@
 }
 
 .popup__btn-save:hover {
-  background-color: #313131;
+  background-color: rgba(0, 0, 0, .8);
 }
