@@ -23,48 +23,7 @@
       <button type="button" class="profile__add-button"></button>
     </section>
     <ul class="elements">
-      <li class="element">
-        <div class="element__caption">
-          <h2 class="element__heading">Карачаевск</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-        <img class="element__pic" src="images/mesto-1.jpg" alt="Пейзаж">
-      </li>
-      <li class="element">
-        <div class="element__caption">
-          <h2 class="element__heading">Гора Эльбрус</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-        <img class="element__pic" src="images/mesto-2.jpg" alt="Пейзаж">
-      </li>
-      <li class="element">
-        <div class="element__caption">
-          <h2 class="element__heading">Домбай</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-        <img class="element__pic" src="images/mesto-3.jpg" alt="Пейзаж">
-      </li>
-      <li class="element">
-        <div class="element__caption">
-          <h2 class="element__heading">Гора Эльбрус</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-        <img class="element__pic" src="images/mesto-2.jpg" alt="Пейзаж">
-      </li>
-      <li class="element">
-        <div class="element__caption">
-          <h2 class="element__heading">Домбай</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-        <img class="element__pic" src="images/mesto-3.jpg" alt="Пейзаж">
-      </li>
-      <li class="element">
-        <div class="element__caption">
-          <h2 class="element__heading">Карачаево-Черкесия</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-        <img class="element__pic" src="images/mesto-1.jpg" alt="Пейзаж">
-      </li>
+      
     </ul>
   </main>
   <footer class="footer">
@@ -81,6 +40,15 @@
       <button type="button" class="popup__btn-close"></button>
     </form>
   </div>
+  <template id="card-template">
+    <li class="element">
+      <div class="element__caption">
+        <h2 class="element__heading"></h2>
+        <button type="button" class="element__btn-like"></button>
+      </div>
+      <img id="card-pic" class="element__pic">
+    </li>
+  </template>
   <script src="script/script.js"></script>
 </body>
 </html>
