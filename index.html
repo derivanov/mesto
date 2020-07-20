@@ -51,6 +51,13 @@
       <button type="button" class="popup__btn-close" id="close-new-card"></button>
     </form>
   </div>
+  <div class="popup popup_fullscreen">
+    <div class="fullscreen">
+      <h2 class="fullscreen__heading">Северная Осетия</h2>
+      <img id="fullscreen-pic" class="fullscreen__pic" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg">
+      <button type="button" class="popup__btn-close" id="close-fullscreen"></button>
+    </div>
+  </div>
 
   <template id="card-template">
     <li class="element">
@@ -59,8 +66,10 @@
         <button type="button" class="element__btn-like"></button>
       </div>
       <img id="card-pic" class="element__pic">
+      <button type="button" class="element__btn-delete"></button>
     </li>
   </template>
+
   <script src="script/script.js"></script>
 </body>
 </html>

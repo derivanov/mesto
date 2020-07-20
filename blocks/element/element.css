@@ -2,8 +2,10 @@
 @import url(__heading/element__heading.css);
 @import url(__pic/element__pic.css);
 @import url(__btn-like/element__btn-like.css);
+@import url(__btn-delete/element__btn-delete.css);
 
 .element {
+  position: relative;
   list-style: none;
   background-color: #fff;
   width: 282px;

@@ -24,6 +24,12 @@ const newCardCloseBtn = document.querySelector('#close-new-card');
 const cardTitleInput = document.querySelector('#card-title');
 const cardLinkInput = document.querySelector('#card-link');
 
+// Полноэкранный просмотр фото
+const popupFullscreen = document.querySelector('.popup_fullscreen');
+const fullscreenHeading = document.querySelector('.fullscreen__heading');
+const fullscreenPic = document.getElementById('fullscreen-pic');
+const fullscreenCloseBtn = document.querySelector('#close-fullscreen');
+
 
 // Функция открытия и закрытия профиля
 function openCloseProfile() {
@@ -45,7 +51,14 @@ function openCloseNewCard() {
     }
 }
 
-
+// Функция открытия и закрытия полноэкранного режима
+function openCloseFullscreen() {
+    if (popupFullscreen.classList.contains('popup_opened')) {
+        popupFullscreen.classList.remove('popup_opened');
+    } else {
+        popupFullscreen.classList.add('popup_opened');
+    }
+}
 
 
 // Функция отправки формы
@@ -63,6 +76,9 @@ profileCloseBtn.addEventListener('click', openCloseProfile);
 // Присваиваем кнопкам создания карточки открытие и закрытие
 newCardBtn.addEventListener('click', openCloseNewCard);
 newCardCloseBtn.addEventListener('click', openCloseNewCard);
+
+// Присваиваем кнопку закрытия полноэкранного
+fullscreenCloseBtn.addEventListener('click', openCloseFullscreen);
 
 // Кнопка отпраки формы
 profileForm.addEventListener('submit', formSubmitProfileHandler);
@@ -107,19 +123,30 @@ const cardsContainer = document.querySelector('.elements');
 // Задаем исходное состояние карточек при загрузке страницы
 initialCards.map(item => addCard(item.name, item.link));
 
-
 // Функция добавления карточки
 function addCard(titleValue, imgValue) {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.cloneNode(true);
+
   cardElement.querySelector('.element__heading').textContent = titleValue;
   cardElement.getElementById('card-pic').src = imgValue;
+
+  cardElement.getElementById('card-pic').addEventListener('click', openCloseFullscreen);
+
+  cardElement.querySelector('.element__btn-like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__btn-like_active');
+  });
+  cardElement.querySelector('.element__btn-delete').addEventListener('click', function (evt) {
+    evt.target.closest('.element').remove();
+
+  });
   cardsContainer.prepend(cardElement);
 }
 
+
 // Функция отправки карточки
 function formSubmitNewCardHandler (evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+  evt.preventDefault();
   addCard(cardTitleInput.value, cardLinkInput.value);
   openCloseNewCard();
   cardTitleInput.value = '';
