@@ -1,36 +1,74 @@
-// Находим профиль, опредлеяем кнопки редактирования и закрытия, находим попап и элементы ввода
-let profileHeading = document.querySelector('.profile__heading');
-let profileCaption = document.querySelector('.profile__caption');
-let profileEditBtn = document.querySelector('.profile__edit-button');
-let popupCloseBtn = document.querySelector('.popup__btn-close');
-let popup = document.querySelector('.popup');
-let formElement = document.querySelector('.popup__container');
-let nameInput = document.querySelector('#fullname');
-let jobInput = document.querySelector('#profession');
+// Находим попап
+const popup = document.querySelector('.popup');
 
-// Функция открытия и закрытия попапа
-function openClosePopup() {
-    if (popup.classList.contains('popup_opened')) {
-        popup.classList.remove('popup_opened');
+// Находим профиль кнопки и попап профиля
+const profileHeading = document.querySelector('.profile__heading');
+const profileCaption = document.querySelector('.profile__caption');
+const profileEditBtn = document.querySelector('.profile__edit-button');
+const popupProfile = document.querySelector('.popup_type_edit');
+const profileCloseBtn = document.querySelector('#close-profile');
+
+// Находим содержание формы профиля
+const profileForm = document.querySelector('#profile-container');
+
+// Находим поля профиля для ввода
+const nameInput = document.querySelector('#fullname');
+const jobInput = document.querySelector('#profession')
+
+// новая карточка
+const newCardBtn = document.querySelector('.profile__add-button');
+const popupNewCard = document.querySelector('.popup_type_new-card');
+const newCardCloseBtn = document.querySelector('#close-new-card');
+
+// Находим поля новой карточки для ввода
+const cardTitleInput = document.querySelector('#card-title');
+const cardLinkInput = document.querySelector('#card-link');
+
+
+// Функция открытия и закрытия профиля
+function openCloseProfile() {
+    if (popupProfile.classList.contains('popup_opened')) {
+        popupProfile.classList.remove('popup_opened');
     } else {
-        popup.classList.add('popup_opened');
+        popupProfile.classList.add('popup_opened');
         nameInput.value = profileHeading.textContent;
         jobInput.value = profileCaption.textContent;
     }
 }
 
+// Функция открытия и закрытия создания новой карточки
+function openCloseNewCard() {
+    if (popupNewCard.classList.contains('popup_opened')) {
+        popupNewCard.classList.remove('popup_opened');
+    } else {
+        popupNewCard.classList.add('popup_opened');
+    }
+}
+
+
+
+
 // Функция отправки формы
-function formSubmitHandler (evt) {
+function formSubmitProfileHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     profileHeading.textContent = nameInput.value;
     profileCaption.textContent = jobInput.value;
-    openClosePopup();
+    openCloseProfile();
 }
 
-// Присваеваем функции открытия, закрытия и отправки кнопкам 
-profileEditBtn.addEventListener('click', openClosePopup);
-popupCloseBtn.addEventListener('click', openClosePopup);
-formElement.addEventListener('submit', formSubmitHandler);
+// Присваиваем кнопкам профиля открытие и закрытие
+profileEditBtn.addEventListener('click', openCloseProfile);
+profileCloseBtn.addEventListener('click', openCloseProfile);
+
+// Присваиваем кнопкам создания карточки открытие и закрытие
+newCardBtn.addEventListener('click', openCloseNewCard);
+newCardCloseBtn.addEventListener('click', openCloseNewCard);
+
+// Кнопка отпраки формы
+profileForm.addEventListener('submit', formSubmitProfileHandler);
+
+
+
 
 // Создаем массив для карточек
 const initialCards = [
@@ -60,8 +98,15 @@ const initialCards = [
     }
 ];
 
+// Находим содержание формы профиля
+const newCardForm = document.querySelector('#new-card-container');
+
 // Находим контейнер для карточек
 const cardsContainer = document.querySelector('.elements');
+
+// Задаем исходное состояние карточек при загрузке страницы
+initialCards.map(item => addCard(item.name, item.link));
+
 
 // Функция добавления карточки
 function addCard(titleValue, imgValue) {
@@ -69,8 +114,17 @@ function addCard(titleValue, imgValue) {
   const cardElement = cardTemplate.cloneNode(true);
   cardElement.querySelector('.element__heading').textContent = titleValue;
   cardElement.getElementById('card-pic').src = imgValue;
-  cardsContainer.append(cardElement);
+  cardsContainer.prepend(cardElement);
 }
 
-// Задаем исходное состояние для всех карточек
-const cardsDeafultState = initialCards.map(item => addCard(item.name, item.link));
+// Функция отправки карточки
+function formSubmitNewCardHandler (evt) {
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+  addCard(cardTitleInput.value, cardLinkInput.value);
+  openCloseNewCard();
+  cardTitleInput.value = '';
+  cardLinkInput.value = '';
+}
+
+// Кнопка отпраки формы
+newCardForm.addEventListener('submit', formSubmitNewCardHandler);

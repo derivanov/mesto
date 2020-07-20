@@ -23,23 +23,35 @@
       <button type="button" class="profile__add-button"></button>
     </section>
     <ul class="elements">
-      
     </ul>
   </main>
   <footer class="footer">
     <p class="footer__author">&copy; 2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
-    <form name="profile" method="GET" action="#" class="popup__container">
+
+  <div class="popup popup_type_edit">
+    <form name="profile" method="GET" action="#" class="popup__container" id="profile-container">
       <h2 class="popup__heading">Редактировать профиль</h2>
       <fieldset class="popup__prof-info">
         <input class="popup__text-field" type="text" id="fullname" name="fullname" value="" placeholder="Имя" required>
         <input class="popup__text-field" type="text" id="profession" name="profession" value="" placeholder="О себе" required>
       </fieldset>
       <input class="popup__btn-save" type="submit" value="Сохранить">
-      <button type="button" class="popup__btn-close"></button>
+      <button type="button" class="popup__btn-close" id="close-profile"></button>
     </form>
   </div>
+  <div class="popup popup_type_new-card">
+    <form name="new-card" method="GET" action="#" class="popup__container" id="new-card-container">
+      <h2 class="popup__heading">Новое место</h2>
+      <fieldset class="popup__prof-info">
+        <input class="popup__text-field" type="text" id="card-title" name="card-title" value="" placeholder="Название" required>
+        <input class="popup__text-field" type="text" id="card-link" name="card-link" value="" placeholder="Ссылка на картинку" required>
+      </fieldset>
+      <input class="popup__btn-save" type="submit" value="Сохранить">
+      <button type="button" class="popup__btn-close" id="close-new-card"></button>
+    </form>
+  </div>
+
   <template id="card-template">
     <li class="element">
       <div class="element__caption">
