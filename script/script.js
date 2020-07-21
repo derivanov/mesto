@@ -126,12 +126,13 @@ const cardsContainer = document.querySelector('.elements');
 // Задаем исходное состояние карточек при загрузке страницы
 initialCards.map(item => addCard(item.name, item.link));
 
-// Очень сложная функция добавления карточки
+// Очень сложная функция добавления карточки которую я не знаю как разбить чтобы ничего не сломалось
 function addCard(titleValue, imgValue) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.cloneNode(true);
     cardElement.querySelector('.element__heading').textContent = titleValue;
     cardElement.getElementById('card-pic').src = imgValue;
+    cardElement.getElementById('card-pic').alt = titleValue;
     cardElement.getElementById('card-pic').addEventListener('click', function () {
         popupFullscreen.classList.add('popup_opened');
         fullscreenHeading.textContent = titleValue;
