@@ -29,6 +29,11 @@ const initialCards = [
 
 
 
+// Функция открытия и закрытия попапа
+function popupToggle(modal) {
+    modal.classList.toggle('popup_opened');
+}
+
 // Профиль
 // Находим профиль
 const profileHeading = document.querySelector('.profile__heading');
@@ -39,34 +44,27 @@ const profileEditBtn = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_type_edit');
 const profileForm = document.querySelector('#profile-container');
 const nameInput = document.querySelector('#fullname');
-const jobInput = document.querySelector('#profession')
+const jobInput = document.querySelector('#profession');
 const profileCloseBtn = document.querySelector('#close-profile');
-
-// Функция открытия и закрытия попапа профиля
-function profilePopupToggle() {
-    if (popupProfile.classList.contains('popup_opened')) {
-        popupProfile.classList.remove('popup_opened');
-    } else {
-        popupProfile.classList.add('popup_opened');
-        nameInput.value = profileHeading.textContent;
-        jobInput.value = profileCaption.textContent;
-    }
-}
 
 // Функция отправки данных из формы в профиль
 function formSubmitProfileHandler (evt) {
     evt.preventDefault();
     profileHeading.textContent = nameInput.value;
     profileCaption.textContent = jobInput.value;
-    profilePopupToggle();
+    popupToggle(popupProfile);
 }
 
 // Кнопка отправки данных из формы в профиль
 profileForm.addEventListener('submit', formSubmitProfileHandler);
 
 // Присваиваем кнопкам профиля открытие и закрытие
-profileEditBtn.addEventListener('click', profilePopupToggle);
-profileCloseBtn.addEventListener('click', profilePopupToggle);
+profileEditBtn.addEventListener('click', () => {
+    nameInput.value = profileHeading.textContent;
+    jobInput.value = profileCaption.textContent;
+    popupToggle(popupProfile);
+  });
+profileCloseBtn.addEventListener('click', () => popupToggle(popupProfile));
 
 
 
@@ -82,20 +80,11 @@ const cardTitleInput = document.querySelector('#card-title');
 const cardLinkInput = document.querySelector('#card-link');
 const newCardCloseBtn = document.querySelector('#close-new-card');
 
-// Функция открытия и закрытия попапа создания новой карточки
-function newCardPopupToggle() {
-    if (popupNewCard.classList.contains('popup_opened')) {
-        popupNewCard.classList.remove('popup_opened');
-    } else {
-        popupNewCard.classList.add('popup_opened');
-    }
-}
-
 // Функция отправки данных из формы в новую карточку
 function formSubmitNewCardHandler (evt) {
     evt.preventDefault();
-    addCard(cardTitleInput.value, cardLinkInput.value);
-    newCardPopupToggle();
+    renderCardPrepend(cardTitleInput.value, cardLinkInput.value);
+    popupToggle(popupNewCard);
     cardTitleInput.value = '';
     cardLinkInput.value = '';
 }
@@ -104,8 +93,8 @@ function formSubmitNewCardHandler (evt) {
 newCardForm.addEventListener('submit', formSubmitNewCardHandler);
 
 // Присваиваем кнопкам создания карточки открытие и закрытие
-newCardBtn.addEventListener('click', newCardPopupToggle);
-newCardCloseBtn.addEventListener('click', newCardPopupToggle);
+newCardBtn.addEventListener('click', () => popupToggle(popupNewCard));
+newCardCloseBtn.addEventListener('click', () => popupToggle(popupNewCard));
 
 
 
@@ -120,32 +109,56 @@ const fullscreenCloseBtn = document.querySelector('#close-fullscreen');
 
 
 // Карточки
-// Находим контейнер для карточек
+// Находим контейнер для карточек темплейт
 const cardsContainer = document.querySelector('.elements');
+const cardTemplate = document.querySelector('#card-template').content;
 
 // Задаем исходное состояние карточек при загрузке страницы
-initialCards.map(item => addCard(item.name, item.link));
+initialCards.forEach(item => renderCardAppend(item.name, item.link));
 
-// Очень сложная функция добавления карточки которую я не знаю как разбить чтобы ничего не сломалось
+// Обозначем сбор конкретных данных
+const handleOpenImgPopup = (titleValue, imgValue) => {
+    fullscreenHeading.textContent = titleValue;
+    fullscreenPic.src = imgValue;
+    popupToggle(popupFullscreen);
+};
+
+// Функции переключателей для кнопок лайка и удаления карточки
+function handleCardLike(evt) {
+    evt.target.classList.toggle('element__btn-like_active');
+}
+
+function handleCardDelete(evt) {
+    evt.target.closest('.element').remove();
+}
+
+// Функция создания карточки
 function addCard(titleValue, imgValue) {
-    const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.cloneNode(true);
+    const cardIconLike = cardElement.querySelector('.element__btn-like');
+    const cardPic = cardElement.getElementById('card-pic');
+    const cardDelete = cardElement.querySelector('.element__btn-delete');
+
     cardElement.querySelector('.element__heading').textContent = titleValue;
-    cardElement.getElementById('card-pic').src = imgValue;
-    cardElement.getElementById('card-pic').alt = titleValue;
-    cardElement.getElementById('card-pic').addEventListener('click', function () {
-        popupFullscreen.classList.add('popup_opened');
-        fullscreenHeading.textContent = titleValue;
-        fullscreenPic.src = imgValue;
-    });
+    cardPic.src = imgValue;
+    cardPic.alt = titleValue;
+    cardPic.addEventListener('click', () => handleOpenImgPopup(titleValue, imgValue));
+
     fullscreenCloseBtn.addEventListener('click', function () {
         popupFullscreen.classList.remove('popup_opened');
     });
-    cardElement.querySelector('.element__btn-like').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__btn-like_active');
-    });
-    cardElement.querySelector('.element__btn-delete').addEventListener('click', function (evt) {
-        evt.target.closest('.element').remove();
-    });
-    cardsContainer.prepend(cardElement);
+    cardIconLike.addEventListener('click', handleCardLike);
+    
+    cardDelete.addEventListener('click', handleCardDelete);
+
+    return cardElement;
 }
+
+// Функции рендера карточек
+function renderCardAppend(titleValue, imgValue) {
+    cardsContainer.append(addCard(titleValue, imgValue));
+};
+
+function renderCardPrepend(titleValue, imgValue) {
+    cardsContainer.prepend(addCard(titleValue, imgValue));
+};
