@@ -28,17 +28,21 @@
   <footer class="footer">
     <p class="footer__author">&copy; 2020 Mesto Russia</p>
   </footer>
+
+  <!-- Профиль -->
   <div class="popup popup_type_edit">
     <form name="profile" method="GET" action="#" class="popup__container" id="profile-container">
       <h2 class="popup__heading">Редактировать профиль</h2>
       <fieldset class="popup__prof-info">
-        <input class="popup__text-field" type="text" id="fullname" name="fullname" value="" placeholder="Имя" required>
-        <input class="popup__text-field" type="text" id="profession" name="profession" value="" placeholder="О себе" required>
+        <input type="text" class="popup__text-field" id="fullname" name="fullname" value="" placeholder="Имя" required minlength="2" maxlength="40">
+        <input type="text" class="popup__text-field" id="profession" name="profession" value="" placeholder="О себе" required minlength="2" maxlength="200">
       </fieldset>
       <input class="popup__btn-save" type="submit" value="Сохранить">
       <button type="button" class="popup__btn-close" id="close-profile"></button>
     </form>
   </div>
+
+  <!-- Карточка -->
   <div class="popup popup_type_new-card">
     <form name="new-card" method="GET" action="#" class="popup__container" id="new-card-container">
       <h2 class="popup__heading">Новое место</h2>
@@ -50,6 +54,7 @@
       <button type="button" class="popup__btn-close" id="close-new-card"></button>
     </form>
   </div>
+
   <div class="popup popup_fullscreen">
     <div class="fullscreen">
       <h2 class="fullscreen__heading"></h2>
