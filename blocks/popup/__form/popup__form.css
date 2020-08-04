@@ -1,4 +1,4 @@
-.popup__container {
+.popup__form {
   position: relative;
   box-sizing: border-box;
   background-color: #fff;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 430px) {
-  .popup__container {
+  .popup__form {
     padding: 34px 26px 36px;
   }
 }

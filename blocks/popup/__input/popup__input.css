@@ -1,14 +1,9 @@
-.popup__text-field {
+.popup__input {
   font-size: 14px;
   line-height: 17px;
   padding: 10px 0 10px;
-  margin-bottom: 20px;
   width: 100%;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   background: none;
-}
-
-.popup__text-field:last-of-type {
-  margin-bottom: 0;
 }

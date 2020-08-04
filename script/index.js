@@ -42,7 +42,7 @@ const profileEditBtn = document.querySelector('.profile__edit-button');
 
 // Находим попап профиля, и форму
 const popupProfile = document.querySelector('.popup_type_edit');
-const profileForm = document.querySelector('#profile-container');
+const profileForm = document.querySelector('#profile-form');
 const nameInput = document.querySelector('#fullname');
 const jobInput = document.querySelector('#profession');
 const profileCloseBtn = document.querySelector('#close-profile');
@@ -68,14 +68,13 @@ profileCloseBtn.addEventListener('click', () => popupToggle(popupProfile));
 
 
 
-
 // Новая карточка
 // Находим кнопку создания карточки
 const newCardBtn = document.querySelector('.profile__add-button');
 
 // Находим попап создания карточки
 const popupNewCard = document.querySelector('.popup_type_new-card');
-const newCardForm = document.querySelector('#new-card-container');
+const newCardForm = document.querySelector('#new-card-form');
 const cardTitleInput = document.querySelector('#card-title');
 const cardLinkInput = document.querySelector('#card-link');
 const newCardCloseBtn = document.querySelector('#close-new-card');
