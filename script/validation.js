@@ -1,3 +1,4 @@
+// Создаем объект для валидации
 const object = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -7,6 +8,7 @@ const object = {
   errorClass: 'popup__error_visible'
 };
 
+// Создаем функцию валидации объекта
 const enableValidation = ({ formSelector, inputSelector, inputErrorClass, submitButtonSelector, inactiveButtonClass, errorClass }) => {
   const form = Array.from(document.querySelectorAll(formSelector));
   form.forEach((formElement) => {
@@ -17,6 +19,7 @@ const enableValidation = ({ formSelector, inputSelector, inputErrorClass, submit
   });
 }
 
+// Создаем функцию-слушатель где собираем все инпуты и кнопки 
 const setEventListeners = (formElement, inputSelector, inputErrorClass, submitButtonSelector, inactiveButtonClass, errorClass) => {
   const inputs = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonSubmit = formElement.querySelector(submitButtonSelector);
@@ -28,6 +31,7 @@ const setEventListeners = (formElement, inputSelector, inputErrorClass, submitBu
   });
 };
 
+// Создаем функцию активации и деактивации кнопок после проверки валидации
 const toggleButtonState = (inputs, buttonSubmit, inactiveButtonClass) => {
   if (isFormValid(inputs)) {
       buttonSubmit.classList.add(inactiveButtonClass);
@@ -38,12 +42,14 @@ const toggleButtonState = (inputs, buttonSubmit, inactiveButtonClass) => {
   }
 };
 
+// Создаем функцию валидации инпутов
 const isFormValid = (inputs) => {
   return inputs.some((inputElement) => {
       return !inputElement.validity.valid;
   });
 };
 
+// Создаем функцию показа и скрытия ошибок после проверки валидации
 const checkInputValidity = (formElement, inputElement, inputErrorClass, errorClass) => {
   if (!inputElement.validity.valid) {
       showInputError(formElement, inputElement, inputErrorClass, errorClass, inputElement.validationMessage);
@@ -52,6 +58,7 @@ const checkInputValidity = (formElement, inputElement, inputErrorClass, errorCla
   }
 };
 
+// Функция показа ошибок
 const showInputError = (formElement, inputElement, inputErrorClass, errorClass, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
   inputElement.classList.add(inputErrorClass);
@@ -59,6 +66,7 @@ const showInputError = (formElement, inputElement, inputErrorClass, errorClass, 
   errorElement.classList.add(errorClass);
 };
 
+// Функция скрытия ошибок
 const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
   inputElement.classList.remove(inputErrorClass);
@@ -66,4 +74,5 @@ const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) 
   errorElement.classList.remove(errorClass);
 };
 
+// Запускаем валидацию объекта
 enableValidation(object);
