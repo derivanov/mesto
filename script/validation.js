@@ -1,5 +1,5 @@
 // Создаем объект для валидации
-const object = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   inputErrorClass: 'popup__input_invalid',
@@ -75,4 +75,4 @@ const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) 
 };
 
 // Запускаем валидацию объекта
-enableValidation(object);
+enableValidation(validationConfig);

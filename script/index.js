@@ -44,6 +44,7 @@ const popupNewCard = document.querySelector('.popup_type_new-card');
 const newCardForm = document.querySelector('#new-card-form');
 const cardTitleInput = document.querySelector('#card-title');
 const cardLinkInput = document.querySelector('#card-link');
+const newCardSubmitBtn = popupNewCard.querySelector('.popup__button')
 const newCardCloseBtn = document.querySelector('#close-new-card');
 
 // Находим кнопку создания карточки
@@ -92,26 +93,6 @@ function formSubmitProfileHandler (evt) {
     closeModalWindow(popupProfile);
 }
 
-// Добавляем слушатель отправки данных из формы в профиль
-profileForm.addEventListener('submit', formSubmitProfileHandler);
-
-// Добавляем слушатель кнопки редактирования профиля
-profileEditBtn.addEventListener('click', () => {
-    nameInput.value = profileHeading.textContent;
-    jobInput.value = profileCaption.textContent;
-    openModalWindow(popupProfile);
-});
-
-// Добавляем слушатель кнопке закрытия профиля
-profileCloseBtn.addEventListener('click', () => closeModalWindow(popupProfile));
-
-// Добавляем слушатель попапу для закрытия профиля
-popupProfile.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__btn-close')) {
-        closeModalWindow(popupProfile);
-    }
-});
-
 
 // Новая карточка
 // Создаем функцию отправки данных из формы в новую карточку
@@ -121,23 +102,9 @@ function formSubmitNewCardHandler (evt) {
     closeModalWindow(popupNewCard);
     cardTitleInput.value = '';
     cardLinkInput.value = '';
+    newCardSubmitBtn.classList.add('popup__button_disabled');
+    newCardSubmitBtn.disabled = true;
 }
-
-// Добавляем слушатель отправкм данных из формы в новую карточку
-newCardForm.addEventListener('submit', formSubmitNewCardHandler);
-
-// Добавляем слушатель кнопке создания новой карточки
-newCardBtn.addEventListener('click', () => openModalWindow(popupNewCard));
-
-// Добавляем слушатель кнопке закрытия новой карточки
-newCardCloseBtn.addEventListener('click', () => closeModalWindow(popupNewCard));
-
-// Добавляем слушатель попапу для закрытия новой карточки
-popupNewCard.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__btn-close')) {
-        closeModalWindow(popupNewCard);
-    }
-});
 
 
 // Карточки
@@ -194,3 +161,40 @@ function renderCardAppend(titleValue, imgValue) {
 function renderCardPrepend(titleValue, imgValue) {
     cardsContainer.prepend(addCard(titleValue, imgValue));
 };
+
+
+// Добавляем слушатель отправки данных из формы в профиль
+profileForm.addEventListener('submit', formSubmitProfileHandler);
+
+// Добавляем слушатель кнопки редактирования профиля
+profileEditBtn.addEventListener('click', () => {
+    nameInput.value = profileHeading.textContent;
+    jobInput.value = profileCaption.textContent;
+    openModalWindow(popupProfile);
+});
+
+// Добавляем слушатель кнопке закрытия профиля
+profileCloseBtn.addEventListener('click', () => closeModalWindow(popupProfile));
+
+// Добавляем слушатель попапу для закрытия профиля
+popupProfile.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__btn-close')) {
+        closeModalWindow(popupProfile);
+    }
+});
+
+// Добавляем слушатель отправкм данных из формы в новую карточку
+newCardForm.addEventListener('submit', formSubmitNewCardHandler);
+
+// Добавляем слушатель кнопке создания новой карточки
+newCardBtn.addEventListener('click', () => openModalWindow(popupNewCard));
+
+// Добавляем слушатель кнопке закрытия новой карточки
+newCardCloseBtn.addEventListener('click', () => closeModalWindow(popupNewCard));
+
+// Добавляем слушатель попапу для закрытия новой карточки
+popupNewCard.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__btn-close')) {
+        closeModalWindow(popupNewCard);
+    }
+});
